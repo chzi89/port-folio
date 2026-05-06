@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>Zaki ur Rehman | JavaScript Developer</title>
+<style>
+        .glass-card {
+            backdrop-filter: blur(24px);
+            background: rgba(23, 31, 51, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:active {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(23, 31, 51, 0.6);
+            transform: scale(0.98);
+        }
+        .text-gradient-cyan {
+            background: linear-gradient(to right, #a5e7ff, #4edea3);
+            
+            -webkit-text-fill-color: transparent;
+        }
+        body {
+            background-color: #0b1326;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(71, 214, 255, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(78, 222, 163, 0.03) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Mobile Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Tap target min-size */
+        .tap-target {
+            min-height: 44px;
+            min-width: 44px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#00a572",
+                    "tertiary-fixed": "#e1e0ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-primary-container": "#00566a",
+                    "on-primary": "#003543",
+                    "error": "#ffb4ab",
+                    "secondary-fixed": "#6ffbbe",
+                    "outline-variant": "#3c494e",
+                    "on-surface-variant": "#bbc9cf",
+                    "inverse-on-surface": "#283044",
+                    "background": "#0b1326",
+                    "tertiary": "#dad9ff",
+                    "surface-dim": "#0b1326",
+                    "on-primary-fixed": "#001f28",
+                    "inverse-primary": "#00677f",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "on-tertiary-container": "#3838c6",
+                    "on-surface": "#dae2fd",
+                    "primary-container": "#00d2ff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-error": "#690005",
+                    "error-container": "#93000a",
+                    "surface-container-lowest": "#060e20",
+                    "surface-variant": "#2d3449",
+                    "surface-bright": "#31394d",
+                    "on-secondary": "#003824",
+                    "surface-container-low": "#131b2e",
+                    "inverse-surface": "#dae2fd",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "surface-container": "#171f33",
+                    "tertiary-container": "#babbff",
+                    "surface-container-highest": "#2d3449",
+                    "on-tertiary": "#1000a9",
+                    "outline": "#859399",
+                    "primary-fixed": "#b6ebff",
+                    "secondary": "#4edea3",
+                    "on-primary-fixed-variant": "#004e60",
+                    "on-error-container": "#ffdad6",
+                    "primary": "#a5e7ff",
+                    "on-background": "#dae2fd",
+                    "surface-tint": "#47d6ff",
+                    "surface": "#0b1326",
+                    "on-secondary-fixed": "#002113",
+                    "on-tertiary-fixed": "#07006c",
+                    "primary-fixed-dim": "#47d6ff",
+                    "surface-container-high": "#222a3d",
+                    "on-secondary-container": "#00311f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "stack-lg": "32px",
+                    "gutter": "20px",
+                    "glass-padding": "20px",
+                    "unit": "4px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "margin-page": "1.5rem"
+            },
+            "fontFamily": {
+                    "code-sm": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Space Grotesk"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Space Grotesk"],
+                    "headline-lg": ["Space Grotesk"],
+                    "label-md": ["Space Grotesk"]
+            },
+            "fontSize": {
+                    "code-sm": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["22px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["17px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["36px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.03em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="text-on-surface font-body-md overflow-x-hidden selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-[#0b1326]/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-6 h-16 max-w-7xl mx-auto">
+<a class="text-lg font-bold tracking-tighter text-white font-headline-md" href="#">chzi89</a>
+<div class="hidden md:flex items-center gap-6"></div>
+</div>
+</nav>
+<main class="relative">
+<!-- Hero Section -->
+<section class="min-h-[90vh] flex flex-col justify-center pt-24 pb-12 px-6 max-w-7xl mx-auto">
+<div class="space-y-stack-md">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/5 border border-secondary/10 text-secondary text-[12px] font-code-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            Available for work
+        </div>
+<h1 class="font-display-lg text-display-lg text-white leading-tight">
+            Zaki ur Rehman <br/>
+<span class="text-gradient-cyan">JavaScript Developer</span>
+</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
+            Building modern, logic-driven web experiences with high-fidelity design.
+        </p>
+<div class="flex flex-col gap-4 pt-6">
+<a class="text-white flex items-center gap-2 tap-target" href="https://github.com/chzi89"><button class="w-full bg-primary-container text-on-primary-container px-6 py-4 rounded-xl font-headline-md text-headline-md flex items-center justify-center gap-2 tap-target active:scale-[0.98] transition-all">
+                View Projects
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button></a>
+<a class="text-white flex items-center gap-2 tap-target" href="mailto:chzaki2125@gmail.com"><button class="w-full glass-card px-6 py-4 rounded-xl font-headline-md text-headline-md text-white tap-target active:scale-[0.98] transition-all">
+                Contact Me
+            </button></a>
+</div>
+</div>
+<!-- Code Snippet Card (Mobile Optimized) -->
+<div class="mt-12 glass-card p-6 rounded-2xl border-white/5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 opacity-20">
+<span class="material-symbols-outlined text-4xl text-primary">terminal</span>
+</div>
+<div class="space-y-1 font-code-sm text-code-sm">
+<p class="text-secondary">const <span class="text-white">developer</span> = {</p>
+<p class="pl-4 text-on-surface-variant">name: <span class="text-primary-container">'Zaki'</span>,</p>
+<p class="pl-4 text-on-surface-variant">focus: [<span class="text-primary-container">'React'</span>, <span class="text-primary-container">'Node'</span>],</p>
+<p class="pl-4 text-on-surface-variant">status: <span class="text-secondary">true</span></p>
+<p class="text-secondary">};</p>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="py-20 px-6 max-w-7xl mx-auto" id="about">
+<h2 class="font-headline-lg text-headline-lg text-white mb-8">About Me</h2>
+<div class="grid grid-cols-1 gap-4">
+<div class="glass-card p-glass-padding rounded-2xl space-y-4">
+<h3 class="font-headline-md text-headline-md text-primary">Logic &amp; Design</h3>
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                I specialize in building scalable applications that function flawlessly and provide exceptional user journeys through clean, intuitive interfaces.
+            </p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+<span class="text-3xl text-secondary font-display-lg">3+</span>
+<p class="text-[10px] font-label-md uppercase tracking-widest text-on-surface-variant mt-1">Years Experience</p>
+</div>
+<div class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center text-center">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2">
+<span class="material-symbols-outlined text-xl">speed</span>
+</div>
+<p class="text-[10px] font-label-md uppercase tracking-widest text-on-surface-variant">Optimized</p>
+</div>
+</div>
+<div class="glass-card p-glass-padding rounded-2xl border-l-2 border-l-secondary">
+<p class="text-body-md italic text-on-surface">"Code is poetry in motion, and design is the stage on which it performs."</p>
+</div>
+</div>
+</section>
+<!-- Technical Arsenal -->
+<section class="py-20 px-6 bg-surface-container-lowest/30" id="skills">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-12">
+<h2 class="font-headline-lg text-headline-lg text-white mb-2">Technical Arsenal</h2>
+<p class="text-on-surface-variant text-sm">Crafting with modern industry standards.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- JavaScript -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-[#F7DF1E] mb-3">javascript</span>
+<span class="font-label-md text-[13px] text-white">JS (ES6+)</span>
+</div>
+<!-- React -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-[#61DAFB] mb-3">rebase_edit</span>
+<span class="font-label-md text-[13px] text-white">React / Next</span>
+</div>
+<!-- Node -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-[#339933] mb-3">settings_ethernet</span>
+<span class="font-label-md text-[13px] text-white">Node.js</span>
+</div>
+<!-- CSS/Tailwind -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-[#06B6D4] mb-3">palette</span>
+<span class="font-label-md text-[13px] text-white">Tailwind</span>
+</div>
+<!-- UI/UX -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-[#FF61F6] mb-3">layers</span>
+<span class="font-label-md text-[13px] text-white">UI/UX Design</span>
+</div>
+<!-- Git -->
+<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-3xl text-[#F05032] mb-3">terminal</span>
+<span class="font-label-md text-[13px] text-white">Git / CI-CD</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="py-20 px-6 max-w-7xl mx-auto" id="projects">
+<div class="flex flex-col gap-2 mb-10">
+<h2 class="font-headline-lg text-headline-lg text-white">Featured Projects</h2>
+<a class="text-primary font-label-md flex items-center gap-1 text-sm tap-target" href="https://github.com/chzi89">
+            View all projects 
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<div class="space-y-8">
+<!-- Project 1 -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Nexus Analytics Dashboard" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Nw49H76B5DMLvZLrS-7_0YED1vblNlvy52VBvEeqiR5Ht4mfLfXo5jpVF5Gdmgr9EUqeR5S9Paul3Qn5IogBANWrKRYc1olmFgLSm43QV0TRanRj7kZV5U7eli5eyWIn2sbQfh9fdpz9L93B_sjkJXF6qRA7m2CugKGCF_TdidZEzTdDxi3Vg2EGkQxqSfUAWk_FHI_jKHhoARcwZutE62Fhh5CHuVsgl1nzAFjKXfBUgaWzeJjFn77prnrLdOCN7UKGJRi1nWT0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0b1326] to-transparent opacity-80"></div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary/10 text-secondary text-[11px] font-code-sm px-2 py-0.5 rounded">Next.js</span>
+<span class="bg-primary/10 text-primary text-[11px] font-code-sm px-2 py-0.5 rounded">JavaScript</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white">Nexus Analytics</h3>
+<p class="text-body-md text-on-surface-variant text-sm">Real-time data monitoring platform for high-traffic SaaS products.</p>
+<div class="flex gap-6 pt-2">
+<a class="text-white flex items-center gap-2 tap-target" href="#"><span class="material-symbols-outlined">link</span> <span class="text-xs font-label-md">Live Demo</span></a>
+<a class="text-white flex items-center gap-2 tap-target" href="#"><span class="material-symbols-outlined">code</span> <span class="text-xs font-label-md">GitHub</span></a>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img alt="Luxe Commerce Mobile App" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOSrIRpoQH99iOyHd8RNWgm3emcoBWbTXXYD9Hj4q8OvLKGVWcKQN8IvWbBOJL1DQWTOAk56zBGuLIHCzAZVBNM76-QV28md5RD6Io3owWD_UnZD4_sAud3mDGh4KHWtkwSPSy_KsIm3ke9y7TXwCP3XRRHOsOpvC8z9OYmTjhsTM5iD007CduPYBUblyYTmeQnRmvq15ppV0O203pYsnJUYScmwFRgHraQpMckedQZAulT3hY9ri_worarizB_05_dyXlTIrXI6Dq"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0b1326] to-transparent opacity-80"></div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary/10 text-secondary text-[11px] font-code-sm px-2 py-0.5 rounded">React Native</span>
+<span class="bg-primary/10 text-primary text-[11px] font-code-sm px-2 py-0.5 rounded">Stripe</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white">Luxe Commerce</h3>
+<p class="text-body-md text-on-surface-variant text-sm">Headless commerce solution with integrated global payments.</p>
+<div class="flex gap-6 pt-2">
+<a class="text-white flex items-center gap-2 tap-target" href="https://github.com/chzi89"><span class="material-symbols-outlined">link</span> <span class="text-xs font-label-md">Live Demo</span></a>
+<a class="text-white flex items-center gap-2 tap-target" href="https://github.com/chzi89"><span class="material-symbols-outlined">code</span> <span class="text-xs font-label-md">GitHub</span></a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Journey Timeline (Refined Mobile View) -->
+<section class="py-20 px-6 bg-surface-container-low/20" id="experience">
+<div class="max-w-7xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-white mb-12 text-center uppercase tracking-widest text-[16px]">Professional Journey</h2>
+<div class="space-y-0 relative">
+<!-- Timeline vertical line -->
+<div class="absolute left-4 top-0 bottom-0 w-[1px] bg-primary/20"></div>
+<!-- Item 1 -->
+<div class="relative pl-12 pb-12">
+<div class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(71,214,255,0.8)] z-10"></div>
+<span class="text-[11px] text-secondary mb-1 block font-code-sm font-bold uppercase tracking-wider">2022 - Present</span>
+<h3 class="font-headline-md text-[18px] text-white">Freelance Developer</h3>
+<p class="text-sm text-on-surface-variant mt-2 leading-relaxed">Building custom web solutions for startups, focusing on React-based architectures.</p>
+</div>
+<!-- Item 2 -->
+<div class="relative pl-12 pb-12">
+<div class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-surface-container-high border-2 border-primary/50 z-10"></div>
+<span class="text-[11px] text-secondary mb-1 block font-code-sm font-bold uppercase tracking-wider">2021 - 2022</span>
+<h3 class="font-headline-md text-[18px] text-white">MERN Specialization</h3>
+<p class="text-sm text-on-surface-variant mt-2 leading-relaxed">Intensive full-stack training and contribution to various open-source tooling.</p>
+</div>
+<!-- Item 3 -->
+<div class="relative pl-12">
+<div class="absolute left-[11px] top-1.5 w-2.5 h-2.5 rounded-full bg-surface-container-high border-2 border-primary/50 z-10"></div>
+<span class="text-[11px] text-secondary mb-1 block font-code-sm font-bold uppercase tracking-wider">2020</span>
+<h3 class="font-headline-md text-[18px] text-white">Foundations</h3>
+<p class="text-sm text-on-surface-variant mt-2 leading-relaxed">Mastering HTML5, CSS3, and core JavaScript principles.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-20 px-6 max-w-7xl mx-auto" id="contact">
+<div class="space-y-12">
+<div class="space-y-4">
+<h2 class="font-display-lg text-display-lg text-white">Let's build <br/><span class="text-gradient-cyan">something great.</span></h2>
+<p class="text-body-md text-on-surface-variant">Available for new opportunities and collaborations.</p>
+<div class="space-y-4 pt-6">
+<a class="flex items-center gap-4 text-white p-3 glass-card rounded-xl" href="mailto:chzaki2125@gmail.com">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="text-sm font-body-md">hello@zaki</span>
+</a>
+<div class="flex items-center gap-4 text-white p-3 glass-card rounded-xl">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="text-sm font-body-md">Sargodha, PK</span>
+</div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl">
+<form class="space-y-4">
+<div>
+<label class="block font-label-md text-[12px] uppercase text-on-surface-variant mb-1.5 ml-1">Name</label>
+<input class="w-full bg-surface-container-high/50 border-white/5 rounded-xl px-4 py-3.5 focus:ring-1 focus:ring-primary focus:border-transparent transition-all outline-none text-white text-sm" placeholder="Your Name" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-[12px] uppercase text-on-surface-variant mb-1.5 ml-1">Email</label>
+<input class="w-full bg-surface-container-high/50 border-white/5 rounded-xl px-4 py-3.5 focus:ring-1 focus:ring-primary focus:border-transparent transition-all outline-none text-white text-sm" placeholder="Email Address" type="email"/>
+</div>
+<div>
+<label class="block font-label-md text-[12px] uppercase text-on-surface-variant mb-1.5 ml-1">Message</label>
+<textarea class="w-full bg-surface-container-high/50 border-white/5 rounded-xl px-4 py-3.5 focus:ring-1 focus:ring-primary focus:border-transparent transition-all outline-none text-white text-sm" placeholder="How can I help you?" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-headline-md py-4 rounded-xl active:scale-[0.97] transition-all tap-target" id="eBtn">Send Message</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-white/5 bg-slate-950/80 backdrop-blur-xl">
+<div class="flex flex-col items-center px-6 gap-8 max-w-7xl mx-auto text-center">
+<div class="text-xl font-bold text-white font-headline-md tracking-tighter">Zaki ur Rehman</div>
+<div class="flex gap-8 justify-center">
+<a class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white tap-target" href="#"><span class="material-symbols-outlined text-[20px]">account_circle</span></a>
+<a class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white tap-target" href="https://my-portfolio.com" target="_blank"><span class="material-symbols-outlined text-[20px]">share</span></a>
+<a class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-white tap-target" href="mailto:chzaki0819@gmail.com"><span class="material-symbols-outlined text-[20px]">alternate_email</span></a>
+</div>
+<p class="font-body-md text-[11px] text-slate-500 uppercase tracking-widest leading-loose">
+            © 2024 Zaki ur Rehman<br/>
+            Built with Logic &amp; High-Fidelity Design
+        </p>
+</div>
+</footer>
+</body>
+</html>
