@@ -3,6 +3,8 @@ export const metadata = {
   description: "Selected projects and case studies by Zaki ur Rehman.",
 };
 
+import Script from "next/script";
+
 const tailwindConfig = `
   tailwind.config = {
     darkMode: "class",
@@ -159,11 +161,31 @@ export default function ProjectsPage() {
       image:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuB_4fbJniQXvMRbTsjtVdSpatMSz7cgwL6B6jwoo9JIRDyLpIDb-7T0_Hg5sofexw0RiwTaTO8Sw4b26uD4RE43kucqLsNp695OOKBPXTuH2sxl8vjCDssvKoB2t5vjspH0m62id6orC-IWxn-CpGz3KSBMjfdGZqhMbjwR0xhWMDnEpWuhC0FUbE7csoPzEJonS0yNILF5EMTYhCxyEL8oEEmoOYH2zyUyDT59yKgo-I3XTMrBal1H",
     },
+    {
+      title: "Shakeel Intl",
+      description:
+        "Corporate website built with performance and SEO in mind; fast load times and clear content structure.",
+      tags: ["Next.js", "SEO", "Performance"],
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+      url: "https://shakeelintl.com",
+    },
+    {
+      title: "Usman Janjua",
+      description:
+        "Personal brand site focusing on portfolio and thought leadership content with clear CTAs and fast navigation.",
+      tags: ["React", "Content", "Design"],
+      image:
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80",
+      url: "https://usmanjanjua.tech",
+    },
   ];
 
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: tailwindConfig }} />
+      <Script id="tailwind-config" strategy="beforeInteractive">
+        {tailwindConfig}
+      </Script>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
       <main className="mx-auto w-full max-w-container-max px-margin-mobile pb-32 pt-32 md:px-margin-desktop">
@@ -183,17 +205,17 @@ export default function ProjectsPage() {
               className="glass-card group flex flex-col overflow-hidden rounded-xl transition-all duration-300 hover:scale-[1.02]"
             >
               <div className="relative h-48 w-full overflow-hidden">
-                <image
+                <img
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   src={project.image}
                   alt={project.title}
                 />
-                <div className="absolute inset-0 `bg-gradient-to-t from-surface to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-80" />
               </div>
 
               <div className="flex flex-1 flex-col p-6">
-                <h3 className="mb-2 text-[24px] `leading-[32px] font-headline-md text-text-primary">{project.title}</h3>
-                <p className="mb-4 `flex-grow font-body-md text-body-md text-text-secondary">{project.description}</p>
+                <h3 className="mb-2 text-[24px] leading-[32px] font-headline-md text-text-primary">{project.title}</h3>
+                <p className="mb-4 flex-grow font-body-md text-body-md text-text-secondary">{project.description}</p>
 
                 <div className="mb-6 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
@@ -207,7 +229,9 @@ export default function ProjectsPage() {
                 </div>
 
                 <a
-                  href="#"
+                  href={project.url || '#'}
+                  target={project.url ? '_blank' : undefined}
+                  rel={project.url ? 'noreferrer' : undefined}
                   className="inline-flex items-center gap-2 text-primary font-label-md text-label-md transition-colors group-hover:text-primary-container"
                 >
                   View Case Study

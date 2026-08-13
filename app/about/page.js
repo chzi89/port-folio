@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 export const metadata = {
   title: "About - Zaki ur Rehman",
   description:
@@ -148,7 +150,9 @@ const customStyles = `
 export default function About() {
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: tailwindConfigScript }} />
+      <Script id="tailwind-config" strategy="beforeInteractive">
+        {tailwindConfigScript}
+      </Script>
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
 
       <main className="relative overflow-hidden px-4 md:px-8">
@@ -179,7 +183,7 @@ export default function About() {
             </div>
 
             <div className="glass-panel rounded-xl p-8 transition-all duration-300 flex flex-col justify-center items-center text-center">
-              <image
+              <img
                 className="w-32 h-32 rounded-full object-cover border-2 border-primary mb-4 shadow-[0_0_20px_rgba(221,183,255,0.2)]"
                 data-alt="A cinematic, high-contrast portrait silhouette of a software developer working in a dark, atmospheric room illuminated only by the glowing code on multiple monitors. The aesthetic is modern, minimalistic, and tech-focused with subtle deep purple and blue neon accents reflecting off glass surfaces. The mood is focused and intense."
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh5_fvw4eVp_2hZkseeuV3QZS4KsHEFd3RVq2AEFY3CGyZl1toOtigZBBEWvWJaweoG2gQTKkXXz4bK-HDNHBDPfI7E1SOpklW4n6n8-OVTfF7ZgMqfU2SlfuEbCFCPoxXSpJI_TFHrbkMyMM80CHl0ucKmIkRekOkmHHkp1DDwfbfkogEDVLsBQQwQwrCWOopD3aCg0ty4NuxuAw9rSGh-RYBAO0Ev3UixZuh1XHPMF9M1MrqdrFZ"
@@ -280,7 +284,7 @@ export default function About() {
 
           <div className="relative border-l border-border-glass ml-4 md:ml-6 space-y-12 pb-8">
             <div className="relative pl-8 md:pl-12 group">
-              <div className="absolute -`left-[9px] top-1 w-4 h-4 rounded-full bg-surface border-2 border-primary group-hover:bg-primary transition-colors duration-300 shadow-[0_0_10px_rgba(221,183,255,0.5)]" />
+              <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-surface border-2 border-primary group-hover:bg-primary transition-colors duration-300 shadow-[0_0_10px_rgba(221,183,255,0.5)]" />
               <div className="glass-panel rounded-xl p-6 md:p-8 hover:-translate-y-1 transition-transform duration-300">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-2">
                   <div>
@@ -296,7 +300,7 @@ export default function About() {
             </div>
 
             <div className="relative pl-8 md:pl-12 group">
-              <div className="absolute -`left-[9px] top-1 w-4 h-4 rounded-full bg-surface border-2 border-secondary group-hover:bg-secondary transition-colors duration-300" />
+              <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-surface border-2 border-secondary group-hover:bg-secondary transition-colors duration-300" />
               <div className="glass-panel rounded-xl p-6 md:p-8 hover:-translate-y-1 transition-transform duration-300">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-2">
                   <div>
@@ -312,7 +316,7 @@ export default function About() {
             </div>
 
             <div className="relative pl-8 md:pl-12 group">
-              <div className="absolute -`left-[9px] top-1 w-4 h-4 rounded-full bg-surface border-2 border-tertiary group-hover:bg-tertiary transition-colors duration-300" />
+              <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-surface border-2 border-tertiary group-hover:bg-tertiary transition-colors duration-300" />
               <div className="glass-panel rounded-xl p-6 md:p-8 hover:-translate-y-1 transition-transform duration-300">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-2">
                   <div>

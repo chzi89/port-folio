@@ -3,6 +3,9 @@ export const metadata = {
   description: "Services and contact offerings by Zaki ur Rehman.",
 };
 
+import Script from "next/script";
+import ContactForm from "../../components/ContactForm";
+
 const tailwindConfig = `
   tailwind.config = {
     darkMode: "class",
@@ -39,7 +42,6 @@ const tailwindConfig = `
           "tertiary-container": "#009eb9",
           surface: "#131313",
           "outline-variant": "#4d4354",
-          "inverse-primary": "#842bd2",
           outline: "#988d9f",
           "on-secondary": "#002e6a",
           "surface-dim": "#131313",
@@ -122,7 +124,7 @@ const styles = `
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.01);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
@@ -158,6 +160,15 @@ const styles = `
   main {
     flex: 1;
     padding-top: 100px;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fadeInUp 0.5s ease both;
   }
 `;
 
@@ -200,33 +211,39 @@ export default function ServicesAndContactPage() {
 
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: tailwindConfig }} />
+      <Script id="tailwind-config" strategy="beforeInteractive">
+        {tailwindConfig}
+      </Script>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
 
-      <main className="mx-auto w-full max-w-container-max px-margin-mobile pb-32 md:px-margin-desktop">
+      <main className="w-full pb-32 mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
         <section className="mt-20 md:mt-32">
           <div className="mb-16 text-center md:mb-24">
             <h1 className="mb-6 font-display-lg text-display-lg gradient-text">Expertise &amp; Offerings</h1>
-            <p className="mx-auto max-w-2xl font-body-lg text-body-lg text-text-secondary">
+            <p className="max-w-2xl mx-auto font-body-lg text-body-lg text-text-secondary">
               Crafting digital experiences with precision and cutting-edge technology. Tailored solutions designed to elevate your brand.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-gutter md:grid-cols-2">
-            {services.map((service) => (
-              <div key={service.title} className="glass-panel glass-panel-hover rounded-xl p-8 flex flex-col h-full">
-                <div className="mb-6 h-12 w-12 rounded-lg bg-surface-glass border border-border-glass flex items-center justify-center text-primary">
+            {services.map((service, idx) => (
+              <div
+                key={service.title}
+                className="flex flex-col h-full p-8 glass-panel glass-panel-hover rounded-xl animate-fade-in"
+                style={{ animationDelay: `${idx * 80}ms` }}
+              >
+                <div className="flex items-center justify-center w-12 h-12 mb-6 border rounded-lg bg-surface-glass border-border-glass text-primary">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
                     {service.icon}
                   </span>
                 </div>
-                <h3 className="font-headline-md text-headline-md text-text-primary mb-4">{service.title}</h3>
-                <p className="font-body-md text-body-md text-text-secondary `flex-grow">{service.text}</p>
-                <div className="mt-8 flex gap-2 flex-wrap">
+                <h3 className="mb-4 font-headline-md text-headline-md text-text-primary">{service.title}</h3>
+                <p className="font-body-md text-body-md text-text-secondary flex-grow">{service.text}</p>
+                <div className="flex flex-wrap gap-2 mt-8">
                   {service.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 rounded-full text-xs font-label-md bg-secondary/10 border border-secondary/20 text-secondary"
+                      className="px-3 py-1 text-xs border rounded-full font-label-md bg-secondary/10 border-secondary/20 text-secondary"
                     >
                       {tag}
                     </span>
@@ -239,88 +256,45 @@ export default function ServicesAndContactPage() {
 
         <section className="mt-32 md:mt-40">
           <div className="mb-16 text-center">
-            <h2 className="font-headline-lg text-headline-lg mb-4 text-text-primary">Let&apos;s Collaborate</h2>
+            <h2 className="mb-4 font-headline-lg text-headline-lg text-text-primary">Let&apos;s Collaborate</h2>
             <p className="font-body-lg text-body-lg text-text-secondary">Ready to start your next project? Get in touch below.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-gutter lg:gap-16 items-start">
-            <div className="lg:col-span-1 space-y-6">
-              {contacts.map((item) => (
-                <div
-                  key={item.label}
-                  className="glass-panel rounded-xl p-6 flex items-center gap-4 hover:border-primary/50 transition-colors"
-                >
-                  <div className="h-10 w-10 rounded-full bg-surface-glass border border-border-glass flex items-center justify-center text-text-primary">
-                    <span className="material-symbols-outlined">{item.icon}</span>
+          <div className="grid items-start grid-cols-1 lg:grid-cols-3 gap-gutter lg:gap-16">
+            <div className="space-y-6 lg:col-span-1">
+              {contacts.map((item, idx) => {
+                const href = item.label === "Email" ? `mailto:${item.value}` : `https://wa.me/${item.value.replace(/[^0-9]/g, "")}`;
+                return (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-4 p-6 transition-colors glass-panel rounded-xl hover:border-primary/50 animate-fade-in"
+                    style={{ animationDelay: `${idx * 80}ms` }}
+                  >
+                    <div className="flex items-center justify-center w-10 h-10 border rounded-full bg-surface-glass border-border-glass text-text-primary">
+                      <span className="material-symbols-outlined">{item.icon}</span>
+                    </div>
+                    <div>
+                      <h4 className="mb-1 font-label-md text-label-md text-text-secondary">{item.label}</h4>
+                      <a href={href} className="transition-colors font-body-md text-body-md text-text-primary hover:text-primary">
+                        {item.value}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-label-md text-label-md text-text-secondary mb-1">{item.label}</h4>
-                    <a href="#" className="font-body-md text-body-md text-text-primary hover:text-primary transition-colors">
-                      {item.value}
-                    </a>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
 
               <div className="flex gap-4 pt-4">
-                <a href="#" className="h-12 w-12 rounded-full glass-panel flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary/50 transition-all">
+                <a href="#" className="flex items-center justify-center w-12 h-12 transition-all rounded-full glass-panel text-text-secondary hover:text-primary hover:border-primary/50">
                   <span className="material-symbols-outlined">code_blocks</span>
                 </a>
-                <a href="#" className="h-12 w-12 rounded-full glass-panel flex items-center justify-center text-text-secondary hover:text-primary hover:border-primary/50 transition-all">
+                <a href="#" className="flex items-center justify-center w-12 h-12 transition-all rounded-full glass-panel text-text-secondary hover:text-primary hover:border-primary/50">
                   <span className="material-symbols-outlined">work</span>
                 </a>
               </div>
             </div>
 
-            <div className="lg:col-span-2 glass-panel rounded-xl p-8 md:p-12">
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <label className="block font-label-md text-label-md text-text-secondary mb-2" htmlFor="name">
-                      Name
-                    </label>
-                    <input
-                      className="input-field w-full font-body-md text-body-md text-text-primary py-2 bg-transparent"
-                      id="name"
-                      placeholder="John Doe"
-                      type="text"
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-label-md text-label-md text-text-secondary mb-2" htmlFor="email">
-                      Email
-                    </label>
-                    <input
-                      className="input-field w-full font-body-md text-body-md text-text-primary py-2 bg-transparent"
-                      id="email"
-                      placeholder="john@example.com"
-                      type="email"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block font-label-md text-label-md text-text-secondary mb-2" htmlFor="message">
-                    Message
-                  </label>
-                  <textarea
-                    className="input-field w-full font-body-md text-body-md text-text-primary py-2 bg-transparent resize-none"
-                    id="message"
-                    placeholder="Tell me about your project..."
-                    rows="4"
-                  />
-                </div>
-
-                <div className="pt-4 flex justify-end">
-                  <button
-                    className="btn-primary text-text-primary px-8 py-3 rounded-full font-label-md text-label-md flex items-center gap-2"
-                    type="button"
-                  >
-                    Send Message
-                    <span className="material-symbols-outlined text-sm">send</span>
-                  </button>
-                </div>
-              </form>
+            <div className="p-8 lg:col-span-2 glass-panel rounded-xl md:p-12 animate-fade-in" style={{ animationDelay: `160ms` }}>
+              <ContactForm />
             </div>
           </div>
         </section>
