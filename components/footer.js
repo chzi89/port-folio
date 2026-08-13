@@ -1,18 +1,29 @@
-
 export default function Footer() {
-    (
-    <footer class="bg-surface text-primary font-body-md text-body-md w-full py-16 border-t border-border-glass flat no shadows transition-opacity duration-200 flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-24">
-<div class="font-headline-md text-headline-md font-bold text-on-surface mb-6 md:mb-0">
-            Zaki ur Rehman
+  return (
+    <footer id="contact" className="mt-24 border-t border-white/10 bg-slate-950/80">
+      <div className="section-shell flex flex-col gap-8 py-10 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="mb-2 text-sm uppercase tracking-[0.2em] text-violet-300">Available for work</p>
+          <h3 className="text-2xl font-semibold text-white">Zaki ur Rehman</h3>
         </div>
-<div class="text-on-surface-variant text-center md:text-left mb-6 md:mb-0">
-            © 2024 Zaki ur Rehman. All rights reserved.
+
+        <div className="text-sm text-slate-300">
+          <p>© 2026 Zaki ur Rehman.</p>
+          <p>Designing thoughtful digital experiences.</p>
         </div>
-<div class="flex gap-6">
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">GitHub</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">LinkedIn</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Email</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">WhatsApp</a>
-</div>
-</footer>
-) }
+
+        <div className="flex flex-wrap gap-5 text-sm text-slate-300">
+          <a href="https://github.com/chzi89" target="_blank" rel="noreferrer" className="transition hover:text-white">
+            GitHub
+          </a>
+          <a href="mailto:chzaki2125@gmail.com" className="transition hover:text-white">
+            Email
+          </a>
+          <a href="https://wa.me/923468668121" target="_blank" rel="noreferrer" className="transition hover:text-white">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </footer>
+  );
+}

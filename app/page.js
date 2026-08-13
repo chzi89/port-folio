@@ -1,175 +1,231 @@
 "use client";
-import Image from "next/image";
-import "./globals.css";
-
-
 
 import { useEffect } from "react";
 
-
-
 export default function Home() {
-   useEffect(() => {
-  function reveal() {
-    const reveals = document.querySelectorAll(".reveal");
+  useEffect(() => {
+    const revealElements = document.querySelectorAll(".reveal");
 
-    reveals.forEach((element) => {
-      const windowHeight = window.innerHeight;
-      const elementTop = element.getBoundingClientRect().top;
-      const elementVisible = 100;
+    if (!revealElements.length) return undefined;
 
-      if (elementTop < windowHeight - elementVisible) {
-        element.classList.add("active");
-      }
-    });
-  }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
 
-  window.addEventListener("scroll", reveal);
+    revealElements.forEach((element) => observer.observe(element));
 
-  setTimeout(reveal, 100);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
-  return () => {
-    window.removeEventListener("scroll", reveal);
-  };
-}, []);
   return (
-    <main className="`flex-grow `pt-[100px]">
-{/* <!-- Hero Section --> */}
-<section className="min-h-[80vh] flex flex-col justify-center items-center px-margin-mobile md:px-margin-desktop text-center relative max-w-container-max mx-auto reveal active">
-<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-secondary/30 bg-surface-glass mb-8">
-<span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-<span className="font-label-md text-label-md text-secondary">Available for new projects</span>
-</div>
-<h1 className="font-display-lg text-[48px] md:text-display-lg text-text-primary mb-6">
-                Hi, I'm <br className="md:hidden"/> <span className="text-gradient-primary">Zaki ur Rehman</span>
-</h1>
-<p className="font-body-lg text-body-lg text-text-secondary max-w-2xl mx-auto mb-12">
-                Full-Stack Web Developer engineering digital experiences that merge exceptional design with robust architecture. Building scalable solutions for a global audience.
+    <main className="`flex-grow pt-28">
+      <section id="home" className="section-shell reveal active">
+        <div className="grid min-h-[72vh] items-center gap-12 pb-20 pt-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="text-center lg:text-left">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-400/30 bg-violet-500/10 px-4 py-2 text-sm text-violet-200">
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
+              Available for select projects
+            </div>
+
+            <h1 className="text-5xl font-black leading-tight text-white md:text-6xl lg:text-7xl">
+              Hi, I&apos;m <span className="text-gradient-primary">Zaki ur Rehman</span>
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300 lg:mx-0">
+              Full-stack web developer building elegant digital products that combine sharp design,
+              clean code, and reliable performance.
             </p>
-<div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-<button className="w-full sm:w-auto `bg-gradient-to-r from-primary-container to-secondary-container text-on-primary font-label-md text-label-md px-8 py-4 rounded-lg hover-lift flex items-center justify-center gap-2">
-                    Hire Me
-                    <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-<button className="w-full sm:w-auto glass-panel text-primary font-label-md text-label-md px-8 py-4 rounded-lg hover-lift flex items-center justify-center gap-2">
-                    View Projects
-                    <span className="material-symbols-outlined text-[18px]">code</span>
-</button>
-</div>
-</section>
-{/* <!-- About Preview --> */}
-<section className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto reveal" id="about">
-<div className="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
-<div className="order-2 md:order-1 glass-panel rounded-xl p-8 relative overflow-hidden group">
-{/* <!-- Abstract code decoration --> */}
-<div className="absolute -right-10 -top-10 opacity-10 text-[120px] font-code pointer-events-none group-hover:text-primary transition-colors duration-700">
-                        {}
-                    </div>
-<h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary mb-6">
-                        Architecting the Web.
-                    </h2>
-<p className="font-body-md text-body-md text-text-secondary mb-6">
-                        I specialize in building high-performance, accessible, and deeply interactive web applications. With a focus on modern stacks and cloud-native architecture, I deliver software that scales seamlessly.
-                    </p>
-<div className="flex flex-wrap gap-2 mb-6">
-<span className="px-3 py-1 rounded-full border border-tertiary-container/30 bg-surface-glass font-code text-code text-tertiary">React</span>
-<span className="px-3 py-1 rounded-full border border-tertiary-container/30 bg-surface-glass font-code text-code text-tertiary">Node.js</span>
-<span className="px-3 py-1 rounded-full border border-tertiary-container/30 bg-surface-glass font-code text-code text-tertiary">TypeScript</span>
-<span className="px-3 py-1 rounded-full border border-tertiary-container/30 bg-surface-glass font-code text-code text-tertiary">PostgreSQL</span>
-</div>
-</div>
-<div className="order-1 md:order-2 flex justify-center">
-<div className="w-64 h-64 md:w-80 md:h-80 rounded-full glass-panel flex items-center justify-center relative shadow-[0_0_40px_rgba(168,85,247,0.15)] overflow-hidden">
-<img className="w-full h-full object-cover mix-blend-luminosity opacity-80" data-alt="A highly stylized, minimalist abstract 3D portrait representing a digital creator in a deep space setting. The aesthetic is dark mode, featuring a sleek obsidian background with subtle translucent glassmorphic shards floating around. Deep indigo and cyan glowing accents illuminate the scene, conveying a futuristic, premium, and sophisticated technical vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhppf8N3xQUuf2h7aqjhgKplsOvtj01Xq-gmuBGtaepoeYR9xpcGj5G0lhA9-MiroCSGbFbRyIjZCeblduXdDrDnX7aBLiSj6hOG-Gw_eEzPpnm-2h18rHKc_NA_PqqRms3-GneB_9SsmFrDSm720tvgrujLaA5cp-V-xLL0MIzYVRvHoiiJ5jY9Qvru9C1VP-pMHonBPXxAo7aC-Y_Z0lUOcf8hogbcD7Z0c2haN3oyCPkd4W2mgN"/>
-</div>
-</div>
-</div>
-</section>
-{/* <!-- Featured Projects (Bento Grid) --> */}
-<section className="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto reveal" id="projects">
-<div className="mb-12 flex justify-between items-end">
-<div>
-<h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary mb-2">Featured Work</h2>
-<p className="font-body-md text-body-md text-text-secondary">Selected projects from my recent portfolio.</p>
-</div>
-<a className="hidden md:flex text-primary hover:text-primary-container font-label-md text-label-md items-center gap-1 transition-colors" href="#">
-                    View all <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
-</a>
-</div>
-<div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-{/* <!-- Project 1 (Spans 2 columns on desktop) --> */}
-<div className="md:col-span-2 glass-panel rounded-xl overflow-hidden hover-lift group relative `h-[400px]">
-<div className="absolute inset-0 `bg-gradient-to-t from-surface-container-lowest to-transparent z-10"></div>
-<img className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="A sleek, modern dashboard UI design showcased on a dark glassmorphism background. The dashboard features intricate data visualizations, glowing cyan and indigo neon accents, and deep obsidian panels. The setting implies a high-end fintech or analytics platform operating in a sophisticated, minimalist deep space aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGGm08pDwUzxm7E809kL2k2YJVOJNWrNr7GnNRh-Gs7mtBz380QHe3T5M-6vGuxf2qRJkRGvkoW7TRYtwFfpFD5qgDZtDhJrxoiS7HsiiZxI2z6T_IIuN1qCAr7ooAY5ELxQdY0qThUPB01m1vOPVXrDGiCyWV1DLNrUvr6wpAnySTs5qDmuA0qfO0ScZwsWY7wS7QqHpojGb-khZEhAsAJanYYgGuOEYeiGAdcgm-q4Ogxi5198-b"/>
-<div className="absolute bottom-0 left-0 p-8 z-20 w-full">
-<div className="flex justify-between items-end">
-<div>
-<span className="text-tertiary font-code text-code mb-2 block">FinTech Platform</span>
-<h3 className="font-headline-md text-headline-md text-text-primary">Nexus Analytics</h3>
-</div>
-<button className="w-10 h-10 rounded-full bg-surface-glass border border-border-glass flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
-<span className="material-symbols-outlined">north_east</span>
-</button>
-</div>
-</div>
-</div>
-{/* <!-- Project 2 --> */}
-<div className="glass-panel rounded-xl overflow-hidden hover-lift group relative `h-[400px]">
-<div className="absolute inset-0 `bg-gradient-to-t from-surface-container-lowest to-transparent z-10"></div>
-<img className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60" data-alt="A futuristic e-commerce mobile application interface rendered on a sleek, dark background. The design employs a premium dark mode aesthetic with smooth glass-like components floating above an infinite black void. Subtle gradients of primary indigo highlight interactive elements, emphasizing a clean, fast, and modern user experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5r3l-Dx7lUJYkddljX0Ef9k6Sww4FiqfRjFe-c14lDN2nUn9xYKViJZnJgSGLGJ6itqJVviRBnzDvQCeNKabQIZTbE3rsq_aQ0Ce1vHNlQRKJ2nr6USRYDVXcKbd00GzHY1dAUd6rd_r-7ZeanT-6VOzCYODRlfqUykdo2e6Nqeh6bLSloVTymVZCEuId6lJxXj8DRyIaq1DJfcl_5GOoBVqAda2kRAAqBoTrADPerZEwbZyuh3VE"/>
-<div className="absolute bottom-0 left-0 p-8 z-20 w-full">
-<div className="flex justify-between items-end">
-<div>
-<span className="text-tertiary font-code text-code mb-2 block">E-Commerce App</span>
-<h3 className="font-headline-md text-[24px] text-text-primary">Aura Store</h3>
-</div>
-</div>
-</div>
-</div>
-{/* <!-- Project 3 --> */}
-<div className="md:col-span-3 glass-panel rounded-xl p-8 hover-lift flex flex-col md:flex-row gap-8 items-center justify-between">
-<div className="max-w-xl">
-<span className="text-secondary font-code text-code mb-2 block">Enterprise SaaS</span>
-<h3 className="font-headline-md text-headline-md text-text-primary mb-4">CloudFlow Workspace</h3>
-<p className="font-body-md text-body-md text-text-secondary">A comprehensive collaborative environment built for remote engineering teams. Features real-time state synchronization, WebRTC communication, and deeply integrated Git workflows.</p>
-</div>
-<div className="flex gap-4">
-<button className="bg-surface-glass border border-border-glass px-6 py-3 rounded-lg font-label-md text-label-md text-primary hover:bg-surface-container-high transition-colors">Case Study</button>
-</div>
-</div>
-</div>
-</section>
-{/* <!-- Services --> */}
-<section className="py-24 px-margin-mobile md:px-margin-desktop bg-surface/50 border-y border-border-glass reveal" id="services">
-<div className="max-w-container-max mx-auto">
-<div className="text-center mb-16">
-<h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary mb-4">Core Competencies</h2>
-</div>
-<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div className="glass-panel p-8 rounded-xl hover-lift">
-<div className="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary mb-6">
-<span className="material-symbols-outlined text-[24px]">terminal</span>
-</div>
-<h3 className="font-headline-md text-[24px] text-text-primary mb-4">Backend Architecture</h3>
-<p className="font-body-md text-body-md text-text-secondary">Designing scalable, secure APIs and microservices using Node.js, Go, and relational/NoSQL databases.</p>
-</div>
-<div className="glass-panel p-8 rounded-xl hover-lift">
-<div className="w-12 h-12 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary mb-6">
-<span className="material-symbols-outlined text-[24px]">web</span>
-</div>
-<h3 className="font-headline-md text-[24px] text-text-primary mb-4">Frontend Engineering</h3>
-<p className="font-body-md text-body-md text-text-secondary">Crafting responsive, accessible, and highly interactive user interfaces primarily using React and modern CSS.</p>
-</div>
-<div className="glass-panel p-8 rounded-xl hover-lift">
-<div className="w-12 h-12 rounded-lg bg-tertiary-container/20 flex items-center justify-center text-tertiary mb-6">
-<span className="material-symbols-outlined text-[24px]">cloud</span>
-</div>
-<h3 className="font-headline-md text-[24px] text-text-primary mb-4">Cloud &amp; DevOps</h3>
-<p className="font-body-md text-body-md text-text-secondary">Deploying and managing infrastructure on AWS/GCP, utilizing Docker, CI/CD pipelines, and infrastructure as code.</p>
-</div>
-</div>
-</div>
-</section>
-</main>
+
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-full `bg-gradient-to-r from-violet-500 to-sky-500 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(99,102,241,0.4)] transition hover:-translate-y-0.5"
+              >
+                Hire Me
+              </a>
+              <a
+                href="#projects"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-violet-300/60 hover:bg-violet-500/10"
+              >
+                View Projects
+              </a>
+            </div>
+
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-300 lg:justify-start">
+              <div>
+                <span className="block text-2xl font-bold text-white">6+</span>
+                Years experience
+              </div>
+              <div>
+                <span className="block text-2xl font-bold text-white">24</span>
+                Launches delivered
+              </div>
+              <div>
+                <span className="block text-2xl font-bold text-white">99%</span>
+                Client satisfaction
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex items-center justify-center">
+            <div className="glass-card soft-ring relative w-full max-w-md overflow-hidden `rounded-[2rem] border border-white/10 p-3">
+              <div className="`rounded-[1.5rem] border border-white/10 bg-slate-900/80 p-4">
+                <div className="mb-4 flex items-center justify-between">
+                  <div className="flex gap-2">
+                    <span className="h-3 w-3 rounded-full bg-rose-400" />
+                    <span className="h-3 w-3 rounded-full bg-amber-400" />
+                    <span className="h-3 w-3 rounded-full bg-emerald-400" />
+                  </div>
+                  <span className="text-xs uppercase tracking-[0.2em] text-slate-400">Portfolio</span>
+                </div>
+
+                <div className="overflow-hidden rounded-[1.25rem] border border-white/10">
+                  <image
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
+                    alt="Professional developer desktop workspace"
+                    className="`h-[420px] w-full object-cover"
+                  />
+                </div>
+
+                <div className="mt-4 grid grid-cols-2 gap-3 text-sm text-slate-300">
+                  <div className="rounded-2xl border border-white/10 bg-slate-800/80 p-3">
+                    <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Focus</p>
+                    <p className="mt-2 font-semibold text-white">Product Design</p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-slate-800/80 p-3">
+                    <p className="text-xs uppercase tracking-[0.18em] text-slate-400">Stack</p>
+                    <p className="mt-2 font-semibold text-white">Next.js + React</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="reveal py-24">
+        <div className="section-shell grid items-center gap-10 lg:grid-cols-2">
+          <div className="glass-card rounded-[1.75rem] p-8 md:p-10">
+            <p className="mb-3 text-sm uppercase tracking-[0.2em] text-sky-300">About</p>
+            <h2 className="text-3xl font-bold text-white md:text-4xl">Architecting robust digital experiences.</h2>
+            <p className="mt-5 text-base leading-8 text-slate-300">
+              I design and build modern web platforms that feel premium, load fast, and perform at scale.
+              From APIs and databases to UI polish and deployment, I help businesses turn ideas into reliable products.
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-2">
+              {['React', 'Node.js', 'TypeScript', 'Next.js', 'PostgreSQL', 'AWS'].map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-violet-400/20 bg-violet-500/5 px-3 py-1.5 text-sm text-violet-100"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900/70 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.7)]">
+            <div className="absolute inset-0 `bg-gradient-to-br from-violet-500/10 via-sky-500/10 to-transparent" />
+            <div className="relative">
+              <image
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80"
+                alt="Portrait of Zaki ur Rehman"
+                className="`h-[420px] w-full `rounded-[1.5rem] object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" className="reveal py-24">
+        <div className="section-shell">
+          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase tracking-[0.2em] text-violet-300">Projects</p>
+              <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">Featured work</h2>
+            </div>
+            <a href="#contact" className="text-sm font-medium text-sky-300 transition hover:text-white">
+              Let&apos;s build something together →
+            </a>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <article className="glass-card group overflow-hidden rounded-[1.75rem] md:col-span-2">
+              <div className="relative `h-[420px] overflow-hidden">
+                <image
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                  alt="Professional business website concept"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 `bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-8">
+                  <p className="text-sm uppercase tracking-[0.2em] text-violet-200">Business Site</p>
+                  <h3 className="mt-2 text-3xl font-semibold text-white">Shakeel Intl</h3>
+                  <a
+                    href="https://shakeelintl.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-block text-sm font-medium text-sky-300 transition hover:text-white"
+                  >
+                    Visit website →
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article className="glass-card group overflow-hidden rounded-[1.75rem]">
+              <div className="relative `h-[420px] overflow-hidden">
+                <image
+                  src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80"
+                  alt="Personal brand website concept"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 `bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-8">
+                  <p className="text-sm uppercase tracking-[0.2em] text-violet-200">Personal Brand</p>
+                  <h3 className="mt-2 text-2xl font-semibold text-white">Usman Janjua</h3>
+                  <a
+                    href="https://usmanjanjua.tech"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-block text-sm font-medium text-sky-300 transition hover:text-white"
+                  >
+                    Visit website →
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div className="glass-card mt-6 rounded-[1.75rem] p-8 md:p-10">
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-sm uppercase tracking-[0.2em] text-sky-300">Healthcare Website</p>
+                <h3 className="mt-2 text-3xl font-semibold text-white">Dr. Amanullah Homeopathic Clinic</h3>
+              </div>
+              <a
+                href="https://dramanullah-homeopathic.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center text-sm font-medium text-violet-200 transition hover:text-white"
+              >
+                View website →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
